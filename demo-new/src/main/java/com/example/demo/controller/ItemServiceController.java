@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Item;
 import com.example.demo.service.ItemService;
 import com.example.demo.service.ItemServiceAnalysis;
+import com.example.validation.ItemValidation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,8 +52,9 @@ public class ItemServiceController {
 
     // --- READ BY ID (HTTP GET) ---
     @GetMapping("/{id}")
-    public ResponseEntity<String> getItemById(@PathVariable Long id) {
-        return itemService.getItemById(id)
+    public ResponseEntity<String> getItemById(@PathVariable String id) {
+    	ItemValidation.parseAndValidateLongId(id); 
+        return itemService.getItemById(Long.valueOf(id))
                 .map(item -> new ResponseEntity<>("Found item with ID: " + item.id() + " and data: " + item.value(), HttpStatus.OK))
                 .orElse(new ResponseEntity<>("Item with ID: " + id + " not found.", HttpStatus.NOT_FOUND));
     }
