@@ -3,8 +3,9 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.example.model.Item;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Item;
 
 @Service
 public class ItemServiceAnalysis {

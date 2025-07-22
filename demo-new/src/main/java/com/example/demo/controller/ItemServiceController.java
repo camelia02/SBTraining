@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Item;
 import com.example.demo.service.ItemService;
 import com.example.demo.service.ItemServiceAnalysis;
-import com.example.model.Item;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

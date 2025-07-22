@@ -1,8 +1,9 @@
 package com.example.service;
 
 
+import com.example.demo.model.Item;
 import com.example.demo.service.ItemService;
-import com.example.model.Item;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
