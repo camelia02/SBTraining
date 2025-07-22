@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+//import org.junit.jupiter.api.BeforeEach;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,6 +33,14 @@ import org.springframework.web.bind.annotation.RestController;
 // Loose coupling design - Related slide (Microservices)
 
 // Discuss in a group to identify 2-3 items below are duplicated and how to improve
+// Separate logic (service) and controller
+// Separate validation and utility (no need service to consume less memory/resources)
+// autowired -> import a service in another service || utility don't need to declare service cause it will consume overhead
+// or can call constructor
+// repository -> service {database)
+// scanPackage when base package don't have the same name
+// Swagger nice beautiful ui to test api endpoints [troubleshooting]
+
 // Brainstorm it together and exchange idea
 // Create a new class to decouple the logic below
 
@@ -63,6 +72,8 @@ public class CRUDController {
 
 		return new ResponseEntity<>(dataStore, HttpStatus.OK); // 200 OK
 	}
+	
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<String> getItemById(@PathVariable Long id) {
