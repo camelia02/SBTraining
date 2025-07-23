@@ -3,6 +3,8 @@ package com.example.validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.example.demo.validation.ItemValidation;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ItemValidationNegativeTest {
