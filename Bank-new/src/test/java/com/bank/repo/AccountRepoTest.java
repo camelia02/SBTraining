@@ -4,6 +4,6 @@ package com.bank.repo;
 // create unit test for create, delete and get account 
 // use CustomerRepoTest as an example
 
-public class AccountRepoTest {
+class AccountRepoTest {
 
 }

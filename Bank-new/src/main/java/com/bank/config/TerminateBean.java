@@ -8,9 +8,10 @@ import jakarta.annotation.PreDestroy;
 @Configuration
 public class TerminateBean {
 
-    @PreDestroy
+
+	@PreDestroy
     public void onDestroy() {
-        System.out.println("Spring Container is destroyed!");
+        System.err.println("Spring Container is destroyed!");
     }
     
     @Bean
