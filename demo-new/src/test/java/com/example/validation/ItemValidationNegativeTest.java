@@ -2,12 +2,14 @@ package com.example.validation;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.demo.validation.ItemValidation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ItemValidationNegativeTest {
+
+class ItemValidationNegativeTest {
 
 	//TODO: SpringBoot:Practical 3 - Testing: Introduction to unit testing and integration testing with Spring Boot.
 	//Complete the code below then commit your code

@@ -2,11 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
-//import org.junit.jupiter.api.BeforeEach;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +21,6 @@ import com.example.demo.service.ItemServiceAnalysis;
 @RestController
 @RequestMapping("/demo/v1") // Base path for all endpoints in this controller
 
-// TODO: SpringBoot:Practical 1
 // Create a new Spring Boot Project as per guide
 // Create a new RestController below and update your own GitHub local repo
 // Add DOGET, DOPOST, DODELETE and DOPUT function as below 
@@ -35,7 +30,6 @@ import com.example.demo.service.ItemServiceAnalysis;
 // Hint: Create a HelloController as per sample and test ensure your springboot is working accordingly
 // use browser to hit http://localhost:8080/
 
-//TODO: SpringBoot:Practical 2
 // Loose coupling design - Related slide (Microservices)
 
 // Discuss in a group to identify 2-3 items below are duplicated and how to improve
@@ -53,6 +47,8 @@ import com.example.demo.service.ItemServiceAnalysis;
 public class CRUDController {
 
     private final ItemServiceAnalysis itemServiceAnalysis;
+    
+    public static final String ITEM_WITH_ID = "Item with id";
     
     public CRUDController(ItemServiceAnalysis itemServiceAnalysis) {
         this.itemServiceAnalysis = itemServiceAnalysis;
@@ -84,7 +80,7 @@ public class CRUDController {
 			return new ResponseEntity<>("Found item with ID: " + id + " and data: " + item, HttpStatus.OK); // 200 OK if
 																											// found
 		}
-		return new ResponseEntity<>("Item with ID: " + id + " not found.", HttpStatus.NOT_FOUND); // 404 Not Found if
+		return new ResponseEntity<>(ITEM_WITH_ID + id + " not found.", HttpStatus.NOT_FOUND); // 404 Not Found if
 																									// not found
 	}
 
@@ -109,11 +105,11 @@ public class CRUDController {
 
 	    if (oldName != null) {
 	        // If oldName is not null, it means the key was present and the value was updated
-	        return new ResponseEntity<>("Item with ID: " + id + " updated successfully to: " + updatedName,
+	        return new ResponseEntity<>(ITEM_WITH_ID + id + " updated successfully to: " + updatedName,
 	                                HttpStatus.OK); // 200 OK if updated
 	    } else {
 	        // If oldName is null, it means the key was not present
-	        return new ResponseEntity<>("Item with ID: " + id + " not found for update.", HttpStatus.NOT_FOUND); // 404 Not Found if not found
+	        return new ResponseEntity<>(ITEM_WITH_ID + id + " not found for update.", HttpStatus.NOT_FOUND); // 404 Not Found if not found
 	    }
 	}
 
@@ -123,10 +119,10 @@ public class CRUDController {
 		String removedItem = Data.getDataStore().remove(id); // Returns the removed value or null if not found
 		if (removedItem != null) {
 			return new ResponseEntity<>(
-					"Item with ID: " + id + " and data: '" + removedItem + "' deleted successfully.",
+					ITEM_WITH_ID + id + " and data: '" + removedItem + "' deleted successfully.",
 					HttpStatus.NO_CONTENT); // 204 No Content for successful deletion
 		}
-		return new ResponseEntity<>("Item with ID: " + id + " not found for deletion.", HttpStatus.NOT_FOUND); // 404
+		return new ResponseEntity<>(ITEM_WITH_ID + id + " not found for deletion.", HttpStatus.NOT_FOUND); // 404
 																												// Not
 																												// Found
 																												// if

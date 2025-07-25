@@ -14,18 +14,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ValidationExceptionHandler {
 
-//TODO: SpringBoot: Practical 6 - Implementing custom error handling mechanisms.
 // Create a new custom exception handler method below for NumberFormatException - Refer to ItemValidation.java
 // Ensure error is log as below
 // [demo] [nio-8080-exec-1] c.e.d.e.ValidationExceptionHandler       : NumberFormatException handled:
+	public static final String STATUS = "status";
+	public static final  String ERRORS = "errors";
+	public static final String TYPE = "type";
 	
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<Map<String, Object>> handleRuntimeValidationException(RuntimeException ex) {
 
 		Map<String, Object> responseBody = new HashMap<>();
-		responseBody.put("type", "custom exception");
-		responseBody.put("status", HttpStatus.BAD_REQUEST.value());
-		responseBody.put("errors", ex.getMessage());
+		
+		
+		responseBody.put(TYPE, "runtime validation exception");
+		responseBody.put(STATUS, HttpStatus.BAD_REQUEST.value());
+		responseBody.put(ERRORS, ex.getMessage());
 
 		ResponseEntity<Map<String, Object>> responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(responseBody);
@@ -41,9 +45,10 @@ public class ValidationExceptionHandler {
 	public ResponseEntity<Map<String, Object>> handleNumberFormatException(NumberFormatException ex) {
 
 		Map<String, Object> responseBody = new HashMap<>();
-		responseBody.put("type", "custom exception");
-		responseBody.put("status", HttpStatus.BAD_REQUEST.value());
-		responseBody.put("errors", ex.getMessage());
+		responseBody.put(TYPE, "number format exception");
+		responseBody.put(STATUS, HttpStatus.BAD_REQUEST.value());
+		responseBody.put(ERRORS, ex.getMessage());
+
 
 		ResponseEntity<Map<String, Object>> responseEntity = ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(responseBody);
@@ -54,4 +59,24 @@ public class ValidationExceptionHandler {
 		return responseEntity;
 
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Map<String, Object>> handleInvalidItemNameException(IllegalArgumentException ex) {
+	    Map<String, Object> responseBody = new HashMap<>();
+	    responseBody.put(TYPE, "validation exception");
+		responseBody.put(STATUS, HttpStatus.BAD_REQUEST.value());
+		responseBody.put(ERRORS, ex.getMessage());
+
+
+	    ResponseEntity<Map<String, Object>> responseEntity = ResponseEntity
+	            .status(HttpStatus.BAD_REQUEST)
+	            .body(responseBody);
+
+	    if (log.isErrorEnabled()) {
+	        log.error("handleInvalidItemNameException handled: {}", responseEntity);
+	    }
+
+	    return responseEntity;
+	}
+	
 }

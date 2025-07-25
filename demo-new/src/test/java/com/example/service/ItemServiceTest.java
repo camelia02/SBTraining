@@ -1,6 +1,7 @@
 package com.example.service;
 
 
+import com.example.demo.model.Data;
 import com.example.demo.model.Item;
 import com.example.demo.service.ItemService;
 
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class ItemServiceTest {
 
 	//TODO: SpringBoot:Practical 4 - Unit Testing continue
@@ -21,6 +23,8 @@ class ItemServiceTest {
 
     @BeforeEach
     void setUp() {
+    	Data.getDataStore().clear();
+        Data.getIdCounter().set(0);
         itemService = new ItemService();
     }
 

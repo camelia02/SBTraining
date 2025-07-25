@@ -4,6 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ResponseEntityUtil {
+	
+	private ResponseEntityUtil() {
+        throw new UnsupportedOperationException("ResponseEntityUtility class");
+    }
 
     // --- Utility: standard response creation ---
     public static ResponseEntity<String> buildResponse(String message, HttpStatus status) {

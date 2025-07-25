@@ -26,10 +26,9 @@ import lombok.AllArgsConstructor;
 public class CRUDControllerRefined {
 
     private final ItemService itemService;
-
-//    public CRUDControllerRefined(ItemService itemService) {
-//        this.itemService = itemService;
-//    }
+    
+    
+    public static final String ITEM_WITH_ID = "Item with id";
 
     // --- CREATE (Auto-generated ID) ---
     @PostMapping
@@ -51,7 +50,7 @@ public class CRUDControllerRefined {
     	ItemValidation.parseAndValidateLongId(id);
         return itemService.getItemById(Long.valueOf(id))
                 .map(item -> ResponseEntityUtil.buildResponse("Found item with ID: " + item.id() + " and data: " + item.value(), HttpStatus.OK))
-                .orElseGet(() -> ResponseEntityUtil.buildResponse("Item with ID: " + id + " not found.", HttpStatus.NOT_FOUND));
+                .orElseGet(() -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID+ id + " not found.", HttpStatus.NOT_FOUND));
     }
 
     // --- UPDATE ---
@@ -59,16 +58,16 @@ public class CRUDControllerRefined {
     public ResponseEntity<String> updateItem(@PathVariable Long id, @RequestBody String updatedName) {
         ItemValidation.validateItemName(updatedName);
         return itemService.updateItem(id, updatedName)
-                .map(item -> ResponseEntityUtil.buildResponse("Item with ID: " + item.id() + " updated successfully to: " + item.value(), HttpStatus.OK))
-                .orElseGet(() -> ResponseEntityUtil.buildResponse("Item with ID: " + id + " not found for update.", HttpStatus.NOT_FOUND));
+                .map(item -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID + item.id() + " updated successfully to: " + item.value(), HttpStatus.OK))
+                .orElseGet(() -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID + id + " not found for update.", HttpStatus.NOT_FOUND));
     }
 
     // --- DELETE ---
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteItem(@PathVariable Long id) {
         return itemService.deleteItem(id)
-                ? ResponseEntityUtil.buildResponse("Item with ID: " + id + " deleted successfully.", HttpStatus.NO_CONTENT)
-                : ResponseEntityUtil.buildResponse("Item with ID: " + id + " not found for deletion.", HttpStatus.NOT_FOUND);
+                ? ResponseEntityUtil.buildResponse(ITEM_WITH_ID + id + " deleted successfully.", HttpStatus.NO_CONTENT)
+                : ResponseEntityUtil.buildResponse(ITEM_WITH_ID+ id + " not found for deletion.", HttpStatus.NOT_FOUND);
     }
 
 

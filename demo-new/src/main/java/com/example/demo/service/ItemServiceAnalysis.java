@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -22,6 +21,6 @@ public class ItemServiceAnalysis {
 
         return allItems.stream()
                 .filter(item -> item.value() != null && item.value().contains("demo"))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

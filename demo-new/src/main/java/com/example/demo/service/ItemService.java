@@ -2,10 +2,7 @@ package com.example.demo.service;
 
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.stereotype.Service;
 
@@ -14,9 +11,6 @@ import com.example.demo.model.Item;
 
 @Service // Mark this as a Spring service component
 public class ItemService {
-
-	//Map<Long, String> dataStore = Data.getDataStore();
-//	private final AtomicLong idCounter = new AtomicLong();
 
 	public Item createItem(String value) {
 		// Validation is now handled by ItemValidation in the controller,

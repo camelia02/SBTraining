@@ -1,6 +1,11 @@
 package com.example.demo.validation;
 
 public class ItemValidation {
+	
+	private ItemValidation() {
+        throw new UnsupportedOperationException("ItemValidation class");
+    }
+	
 
 	/**
 	 * Validates a general item name string.
@@ -10,7 +15,7 @@ public class ItemValidation {
 	 */
 	public static void validateItemName(String itemName) {
 		if (itemName == null || itemName.isBlank()) {
-			throw new RuntimeException("Item name cannot be empty or blank.");
+			throw new IllegalArgumentException("Item name cannot be empty or blank.");
 		}
 	}
 
