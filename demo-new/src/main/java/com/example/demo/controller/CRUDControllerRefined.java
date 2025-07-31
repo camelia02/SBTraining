@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Item;
 import com.example.demo.service.ItemService;
 import com.example.demo.util.ResponseEntityUtil;
-import com.example.demo.validation.ItemValidation;
+import com.example.demo.validation.BranchValidation;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -33,7 +33,7 @@ public class CRUDControllerRefined {
     // --- CREATE (Auto-generated ID) ---
     @PostMapping
     public ResponseEntity<String> createItem(@RequestBody String newItemName) {
-        ItemValidation.validateItemName(newItemName);
+        BranchValidation.validateItemName(newItemName);
         Item item = itemService.createItem(newItemName);
         return ResponseEntityUtil.buildResponse("Item created successfully with ID: " + item.id() + " and data: " + item.value(), HttpStatus.CREATED);
     }
@@ -47,7 +47,7 @@ public class CRUDControllerRefined {
     // --- READ (By ID) ---
     @GetMapping("/{id}")
     public ResponseEntity<String> getItemById(@PathVariable String id) {
-    	ItemValidation.parseAndValidateLongId(id);
+    	BranchValidation.parseAndValidateLongId(id);
         return itemService.getItemById(Long.valueOf(id))
                 .map(item -> ResponseEntityUtil.buildResponse("Found item with ID: " + item.id() + " and data: " + item.value(), HttpStatus.OK))
                 .orElseGet(() -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID+ id + " not found.", HttpStatus.NOT_FOUND));
@@ -56,7 +56,7 @@ public class CRUDControllerRefined {
     // --- UPDATE ---
     @PutMapping("/{id}")
     public ResponseEntity<String> updateItem(@PathVariable Long id, @RequestBody String updatedName) {
-        ItemValidation.validateItemName(updatedName);
+        BranchValidation.validateItemName(updatedName);
         return itemService.updateItem(id, updatedName)
                 .map(item -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID + item.id() + " updated successfully to: " + item.value(), HttpStatus.OK))
                 .orElseGet(() -> ResponseEntityUtil.buildResponse(ITEM_WITH_ID + id + " not found for update.", HttpStatus.NOT_FOUND));

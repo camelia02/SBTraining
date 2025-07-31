@@ -1,8 +1,8 @@
 package com.example.demo.validation;
 
-public class ItemValidation {
+public class BranchValidation {
 	
-	private ItemValidation() {
+	private BranchValidation() {
         throw new UnsupportedOperationException("ItemValidation class");
     }
 	

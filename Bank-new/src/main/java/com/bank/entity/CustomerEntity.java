@@ -9,6 +9,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -54,7 +55,8 @@ public class CustomerEntity implements Serializable {
     private LocalDateTime creationDate;
 
     // @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "customerEntity",fetch = FetchType.LAZY)
+    //  @OneToMany(mappedBy = "customerEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AccountEntity> accountEntities = new ArrayList<>();
     
     // Set creationDate to current time if it's null before persisting

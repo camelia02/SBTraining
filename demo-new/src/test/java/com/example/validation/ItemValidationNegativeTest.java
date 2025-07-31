@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.demo.validation.ItemValidation;
+import com.example.demo.validation.BranchValidation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +20,7 @@ class ItemValidationNegativeTest {
     	// complete the code here
     	String invalid = "ABC123";
     	IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-             ItemValidation.parseAndValidateLongId(invalid);
+             BranchValidation.parseAndValidateLongId(invalid);
          });
          assertEquals("Invalid ID format. ID must be a valid number.", thrown.getMessage());
     }

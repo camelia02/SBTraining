@@ -9,10 +9,10 @@
 		<version>3.0.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.bank</groupId>
-	<artifactId>spring-boot-bank-example</artifactId>
+	<groupId>com.bankS</groupId>
+	<artifactId>spring-boot-demo-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-boot-bank-example</name>
+	<name>spring-boot-demo-example</name>
 	<description>Spring Boot Simple bank example: Rest API Documentation</description>
 	<properties>
 		<java.version>17</java.version>

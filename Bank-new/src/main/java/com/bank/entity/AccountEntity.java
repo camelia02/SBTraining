@@ -55,7 +55,6 @@ public class AccountEntity implements Serializable {
 	@ManyToOne(optional = false) // account must have a customer
 	@JoinColumn(name = "customer_id", nullable = false)
 	private CustomerEntity customerEntity;
-
 	
 	@Column(name = "creation_date", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)

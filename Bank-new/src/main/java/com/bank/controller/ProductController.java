@@ -1,7 +1,5 @@
 package com.bank.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +16,7 @@ import com.bank.mapper.ProductMapper;
 import com.bank.model.ProductDTO;
 import com.bank.service.IProductService;
 
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -31,24 +30,33 @@ public class ProductController {
 
     private final ProductMapper productMapper;
 
-    @GetMapping
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        return ResponseEntity.ok(
-            productMapper.toDtoList(productService.getAllProducts())
-        );
-    }
+//    @GetMapping
+//    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+//        return ResponseEntity.ok(
+//            productMapper.toDtoList(productService.getAllProducts())
+//        );
+//    }
+    
+//    @GetMapping
+//    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+//    	throw new DemoAppException("Demo exception testing");
+//
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
-        return productService.getProductById(id)
+    	
+//        return ResponseEntity.ok(
+//            productMapper.toDto(productService.getProductById(id))
+//        );
+    	
+    	return productService.getProductById(id)
                 .map(productMapper::toDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDto) {
-    	logger.info("createProduct started product={}", productDto);
     	return ResponseEntity.ok(
             productMapper.toDto(
                 productService.createProduct(productMapper.toEntity(productDto))
