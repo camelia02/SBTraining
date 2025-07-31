@@ -6,8 +6,8 @@
 <org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
 </properties>
 <modules>
-<module>demo-new</module>
-<module>bank-new</module>
+<module>Backend_Util</module>
+<module>Bank-new</module>
 </modules>
 <parent>
 <groupId>org.springframework.boot</groupId>
